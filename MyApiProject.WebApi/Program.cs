@@ -1,3 +1,8 @@
+using MyApiProject.BusinessLayer.Abstract;
+using MyApiProject.BusinessLayer.Concrete;
+using MyApiProject.DataAccessLayer.Abstract;
+using MyApiProject.DataAccessLayer.Context;
+using MyApiProject.DataAccessLayer.EntityFramework;
 
 namespace MyApiProject.WebApi
 {
@@ -7,10 +12,17 @@ namespace MyApiProject.WebApi
         {
             var builder = WebApplication.CreateBuilder(args);
 
-            // Add services to the container.
+            builder.Services.AddDbContext<ApiContext>();
 
+            // Dependency Injection Registrations
+            builder.Services.AddScoped<ICategoryDal, EfCategoryDal>();
+            builder.Services.AddScoped<ICategoryService, CategoryManager>();
+
+            builder.Services.AddScoped<IProductDal, EfProductDal>();
+            builder.Services.AddScoped<IProductService, ProductManager>();
+
+            // Add services to the container.
             builder.Services.AddControllers();
-            // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
 
@@ -26,7 +38,6 @@ namespace MyApiProject.WebApi
             app.UseHttpsRedirection();
 
             app.UseAuthorization();
-
 
             app.MapControllers();
 
