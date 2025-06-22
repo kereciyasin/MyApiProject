@@ -1,14 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 
 namespace MyApiProject.EntityLayer.Concrete
 {
     public class Category
     {
-        public int CagoryId { get; set; }
+        public int CategoryId { get; set; }
         public string CategoryName { get; set; }
         public List<Product> Products { get; set; } // Navigation property for related products
     }

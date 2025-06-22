@@ -7,7 +7,7 @@ namespace MyApiProject.DataAccessLayer.Context
     {
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer("Server=KERECI\\SQLEXPRESS;Database=MyApiProjectDb; integrated security=true");
+            optionsBuilder.UseSqlServer("Server=KERECI\\SQLEXPRESS;Database=MyApiProjectDb;Integrated Security=True;TrustServerCertificate=True");
         }
         public DbSet<Category> Categories { get; set; }
         public DbSet<Product> Products { get; set; }
