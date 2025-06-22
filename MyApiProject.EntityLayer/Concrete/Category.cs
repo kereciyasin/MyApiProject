@@ -10,5 +10,6 @@ namespace MyApiProject.EntityLayer.Concrete
     {
         public int CagoryId { get; set; }
         public string CategoryName { get; set; }
+        public List<Product> Products { get; set; } // Navigation property for related products
     }
 }
