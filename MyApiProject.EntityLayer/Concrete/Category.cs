@@ -1,0 +1,14 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace MyApiProject.EntityLayer.Concrete
+{
+    public class Category
+    {
+        public int CagoryId { get; set; }
+        public string CategoryName { get; set; }
+    }
+}
