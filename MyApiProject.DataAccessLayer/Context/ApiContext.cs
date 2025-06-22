@@ -1,9 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using MyApiProject.EntityLayer.Concrete;
 
 namespace MyApiProject.DataAccessLayer.Context
 {
@@ -11,7 +7,9 @@ namespace MyApiProject.DataAccessLayer.Context
     {
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer("Server=localhost;Database=MyApiProjectDb;User Id=myuser;Password=mypassword;");
+            optionsBuilder.UseSqlServer("Server=KERECI\\SQLEXPRESS;Database=MyApiProjectDb; integrated security=true");
         }
+        public DbSet<Category> Categories { get; set; }
+        public DbSet<Product> Products { get; set; }
     }
 }
