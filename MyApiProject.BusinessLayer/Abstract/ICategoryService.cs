@@ -9,5 +9,6 @@ namespace MyApiProject.BusinessLayer.Abstract
 {
     public interface ICategoryService : IGenericService<Category>
     {
+        public int TCategoryCount(); // Method to get the count of categories
     }
 }

@@ -69,5 +69,11 @@ namespace MyApiProject.WebApi.Controllers
             _categoryService.TUpdate(category);
             return Ok("Category updated successfully using DTO.");
         }
+        [HttpGet("CategoryCount")]
+        public IActionResult CategoryCount()
+        {
+            var count = _categoryService.TCategoryCount();
+            return Ok(count);
+        }
     }
 }
