@@ -39,5 +39,28 @@ namespace MyApiProject.WebApi.Controllers
             _productService.TDelete(id);
             return Ok("Product deleted successfully.");
         }
+        [HttpGet("GetProduct")]
+        public IActionResult GetProduct(int id)
+        {
+            var value = _productService.TGetById(id);
+            if (value == null)
+            {
+                return NotFound("Product not found.");
+            }
+            return Ok(value);
+        }
+        [HttpPut]
+        public IActionResult UpdateProduct(UpdateProductDto updateProductDto)
+        {
+            Product product = new Product();
+            product.ProductId = updateProductDto.ProductId;
+            product.ProductName = updateProductDto.ProductName;
+            product.Price = updateProductDto.Price;
+            product.Stock = updateProductDto.Stock;
+            product.CategoryId = updateProductDto.CategoryId; // Assuming CategoryId is part of UpdateProductDto
+            _productService.TUpdate(product);
+            return Ok("Product updated successfully.");
+
+        }
     }
 }
