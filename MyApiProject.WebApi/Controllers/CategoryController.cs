@@ -31,5 +31,34 @@ namespace MyApiProject.WebApi.Controllers
             _categoryService.TInsert(category);
             return Ok("Category created successfully.");
         }
+        [HttpDelete]
+        public IActionResult DeleteCategory(int id)
+        {
+            _categoryService.TDelete(id);
+            return Ok("Category deleted successfully.");
+        }
+        [HttpGet("GetCategory")]
+
+        public IActionResult GetCategory(int id)
+        {
+            var value = _categoryService.TGetById(id);
+            if (value == null)
+            {
+                return NotFound("Category not found.");
+            }
+            return Ok(value);
+
+        }
+        [HttpPut]
+        public IActionResult UpdateCategory(Category category)
+        {
+            var existingCategory = _categoryService.TGetById(category.CategoryId);
+            if (existingCategory == null)
+            {
+                return NotFound("Category not found.");
+            }
+            _categoryService.TUpdate(category);
+            return Ok("Category updated successfully.");
+        }
     }
 }
