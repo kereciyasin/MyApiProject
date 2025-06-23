@@ -9,5 +9,7 @@ namespace MyApiProject.DataAccessLayer.Abstract
 {
     public interface ICategoryDal : IGenericDal<Category>
     {
+        public int CategoryCount(); // Method to get the count of categories
+
     }
 }
