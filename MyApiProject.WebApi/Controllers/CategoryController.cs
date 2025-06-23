@@ -60,5 +60,14 @@ namespace MyApiProject.WebApi.Controllers
             _categoryService.TUpdate(category);
             return Ok("Category updated successfully.");
         }
+        [HttpPut("UpdateCategoryDto")]
+        public IActionResult UpdateCategory(UpdateCategoryDto updateCategoryDto)
+        {
+            Category category = new Category();
+            category.CategoryId = updateCategoryDto.CategoryId;
+            category.CategoryName = updateCategoryDto.CategoryName;
+            _categoryService.TUpdate(category);
+            return Ok("Category updated successfully using DTO.");
+        }
     }
 }
