@@ -13,6 +13,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyApiProject.WebApi", "MyAp
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyApiProject.DtoLayer", "MyApiProject.DtoLayer\MyApiProject.DtoLayer.csproj", "{CA955303-A4DD-438E-A1B6-0B1CE9BCEC45}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyApiProject.WebUI", "MyApiProject.WebUI\MyApiProject.WebUI.csproj", "{A99FED5D-478B-4998-A507-8702E6386D68}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +41,10 @@ Global
 		{CA955303-A4DD-438E-A1B6-0B1CE9BCEC45}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{CA955303-A4DD-438E-A1B6-0B1CE9BCEC45}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{CA955303-A4DD-438E-A1B6-0B1CE9BCEC45}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A99FED5D-478B-4998-A507-8702E6386D68}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A99FED5D-478B-4998-A507-8702E6386D68}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A99FED5D-478B-4998-A507-8702E6386D68}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A99FED5D-478B-4998-A507-8702E6386D68}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
