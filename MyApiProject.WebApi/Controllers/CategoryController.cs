@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using MyApiProject.BusinessLayer.Abstract;
+using MyApiProject.DtoLayer.CategoryDtos;
 using MyApiProject.EntityLayer.Concrete;
 
 namespace MyApiProject.WebApi.Controllers
@@ -23,8 +24,10 @@ namespace MyApiProject.WebApi.Controllers
             return Ok(categories);
         }
         [HttpPost]
-        public IActionResult CreateCategory(Category category)
+        public IActionResult CreateCategory(CreateCategoryDto createCategoryDto)
         {
+            Category category = new Category();
+            category.CategoryName = createCategoryDto.CategoryName;
             _categoryService.TInsert(category);
             return Ok("Category created successfully.");
         }

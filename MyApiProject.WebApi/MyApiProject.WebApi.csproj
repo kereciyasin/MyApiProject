@@ -16,6 +16,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\MyApiProject.BusinessLayer\MyApiProject.BusinessLayer.csproj" />
+    <ProjectReference Include="..\MyApiProject.DtoLayer\MyApiProject.DtoLayer.csproj" />
   </ItemGroup>
 
 </Project>
