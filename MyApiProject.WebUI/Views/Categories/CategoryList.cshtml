@@ -1,0 +1,11 @@
+﻿@model List<MyApiProject.WebUI.Dtos.ResultCategoryDto>
+
+@{
+    Layout = null;
+}
+
+@foreach (var item in Model)
+{
+    <p>@item.categoryId - @item.categoryName</p>
+}
+
