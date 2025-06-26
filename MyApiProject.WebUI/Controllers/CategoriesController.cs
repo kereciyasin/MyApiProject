@@ -26,5 +26,6 @@ namespace MyApiProject.WebUI.Controllers
 
             return View();
         }
+        []
     }
 }
