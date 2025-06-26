@@ -25,13 +25,15 @@ namespace MyApiProject.WebUI.Controllers
                 return View(values);
             }
 
-            return View();
+            return View(new List<ResultCategoryDto>());
         }
+
         [HttpGet]
-        public async Task<IActionResult> CategoryAdd()
+        public IActionResult CategoryAdd()
         {
             return View();
         }
+
         [HttpPost]
         public async Task<IActionResult> CategoryAdd(CategoryAddDto categoryAddDto)
         {
@@ -45,4 +47,19 @@ namespace MyApiProject.WebUI.Controllers
             }
             return View();
         }
+
+        // HTTP GET ile silme işlemi (basit uygulama için)
+        [HttpGet]
+        public async Task<IActionResult> CategoryDelete(int id)
+        {
+            var client = _httpClientFactory.CreateClient();
+            var responseMessage = await client.DeleteAsync("https://localhost:7109/api/Category?id=" + id);
+            if (responseMessage.IsSuccessStatusCode)
+            {
+                return RedirectToAction("CategoryList");
+            }
+            // Başarısızsa tekrar listeye dön
+            return RedirectToAction("CategoryList");
+        }
     }
+}

@@ -1,0 +1,32 @@
+﻿@model MyApiProject.WebUI.Dtos.CategoryAddDto
+@{
+    Layout = null;
+}
+
+<link href="~/lib/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" />
+
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card shadow">
+                <div class="card-header bg-primary text-white">
+                    <h4 class="mb-0">Add New Category</h4>
+                </div>
+                <div class="card-body">
+                    <form method="post" autocomplete="off">
+                        <div class="mb-3">
+                            <label asp-for="CategoryName" class="form-label">Category Name</label>
+                            <input type="text" asp-for="CategoryName" class="form-control" />
+                            <span asp-validation-for="CategoryName" class="text-danger"></span>
+                        </div>
+                        <button type="submit" class="btn btn-success w-100">Add Category</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}
