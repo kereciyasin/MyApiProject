@@ -6,8 +6,12 @@ namespace MyApiProject.WebUI
         {
             var builder = WebApplication.CreateBuilder(args);
 
+
+
             // Add services to the container.
             builder.Services.AddControllersWithViews();
+
+            builder.Services.AddHttpClient(); // Register IHttpClientFactory
 
             var app = builder.Build();
 
