@@ -4,7 +4,6 @@ namespace MyApiProject.WebUI.Dtos
 {
     public class CreateProductDto
     {
-        public int ProductId { get; set; }
         public string ProductName { get; set; }
         public int Price { get; set; }
         public decimal Stock { get; set; }
