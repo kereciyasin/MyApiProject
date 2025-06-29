@@ -44,6 +44,16 @@ namespace MyApiProject.WebUI.Controllers
             return View();
 
         }
+        [HttpPost]
+        public async Task<IActionResult> CreateProduct(CreateProductDto createProductDto)
+        {
+            var client = _httpClientFactory.CreateClient(); // Use the default client configuration
+            var response = await client.PostAsJsonAsync("https://localhost:7109/api/Product", createProductDto);
+            if (response.IsSuccessStatusCode)
+            {
+                return RedirectToAction("ProductList");
+            }
+            return View(createProductDto);
 
+        }
     }
-}

@@ -1,0 +1,40 @@
+﻿@model MyApiProject.WebUI.Dtos.CreateProductDto
+@{
+    Layout = null;
+}
+
+<link href="~/lib/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" />
+
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card shadow">
+                <div class="card-header bg-primary text-white">
+                    <h4 class="mb-0">Add New Product</h4>
+                </div>
+                <div class="card-body">
+                    <form method="post" autocomplete="off">
+                        <div class="mb-3">
+                            <label asp-for="ProductName" class="form-label">Product Name</label>
+                            <input type="text" asp-for="ProductName" class="form-control" />
+                        </div>
+                        <div class="mb-3">
+                            <label asp-for="Price" class="form-label">Product Price</label>
+                            <input type="number" asp-for="Price" class="form-control" />
+                        </div>
+                        <div class="mb-3">
+                            <label asp-for="Stock" class="form-label">Product Stock</label>
+                            <input type="number" asp-for="Stock" class="form-control" />
+                        </div>
+                        <div class="mb-3">
+                            <label asp-for="CategoryId" class="form-label">Product Category</label>
+
+                            @Html.DropDownListFor(x => x.CategoryId, (List<SelectListItem>)ViewBag.v, new { @class = "form-control" })
+                        </div>
+                        <button class="btn btn-primary w-100" type="submit">Add Product</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
