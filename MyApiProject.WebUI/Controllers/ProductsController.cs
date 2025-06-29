@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc.Rendering;
 using MyApiProject.WebUI.Dtos;
 using Newtonsoft.Json;
+using System.Text;
 
 namespace MyApiProject.WebUI.Controllers
 {
@@ -48,12 +49,68 @@ namespace MyApiProject.WebUI.Controllers
         public async Task<IActionResult> CreateProduct(CreateProductDto createProductDto)
         {
             var client = _httpClientFactory.CreateClient(); // Use the default client configuration
-            var response = await client.PostAsJsonAsync("https://localhost:7109/api/Product", createProductDto);
+            var jsonData = JsonConvert.SerializeObject(createProductDto);
+            StringContent content = new StringContent(jsonData, Encoding.UTF8, "application/json");
+            var response = await client.PostAsync("https://localhost:7109/api/Product", content);
             if (response.IsSuccessStatusCode)
             {
                 return RedirectToAction("ProductList");
             }
-            return View(createProductDto);
+            return View();
 
         }
+
+        public async Task<IActionResult> DeleteProduct(int id)
+        {
+            var client = _httpClientFactory.CreateClient(); // Use the default client configuration
+            var response = await client.DeleteAsync("https://localhost:7109/api/Product?id=" + id);
+            if (response.IsSuccessStatusCode)
+            {
+                return RedirectToAction("ProductList");
+            }
+            return View();
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> UpdateProduct(int id)
+        {
+            var client = _httpClientFactory.CreateClient(); // Use the default client configuration
+            var response = await client.GetAsync("https://localhost:7109/api/Product");
+            var jsonData = await response.Content.ReadAsStringAsync();
+            var values = JsonConvert.DeserializeObject<List<ResultProductDto>>(jsonData);
+            List<SelectListItem> values2 = (from x in values
+                                            select new SelectListItem
+                                            {
+                                                Text = x.ProductName,
+                                                Value = x.ProductId.ToString()
+                                            }).ToList();
+            ViewBag.v = values2; // Pass the products to the view
+
+            var client2 = _httpClientFactory.CreateClient(); // Use the default client configuration
+            var response2 = await client2.GetAsync("https://localhost:7109/api/Product/GetProduct?id=" + id);
+            if (response2.IsSuccessStatusCode)
+            {
+                var jsonData2 = await response2.Content.ReadAsStringAsync();
+                var updatedValues = JsonConvert.DeserializeObject<UpdateProductDto>(jsonData2);
+                return View(updatedValues);
+            }
+            return View();
+
+        }
+        [HttpPost]
+        public async Task<IActionResult> UpdateProduct(UpdateProductDto updateProductDto)
+        {
+            var client = _httpClientFactory.CreateClient(); // Use the default client configuration
+            var jsonData = JsonConvert.SerializeObject(updateProductDto);
+            StringContent content = new StringContent(jsonData, Encoding.UTF8, "application/json");
+            var response = await client.PutAsync("https://localhost:7109/api/Product/GetProduct/", content);
+            if (response.IsSuccessStatusCode)
+            {
+                return RedirectToAction("ProductList");
+            }
+            return View();
+
+        }
+
     }
+}
