@@ -75,14 +75,14 @@ namespace MyApiProject.WebUI.Controllers
         public async Task<IActionResult> UpdateProduct(int id)
         {
             var client = _httpClientFactory.CreateClient(); // Use the default client configuration
-            var response = await client.GetAsync("https://localhost:7109/api/Product");
+            var response = await client.GetAsync("https://localhost:7109/api/Category");
             var jsonData = await response.Content.ReadAsStringAsync();
-            var values = JsonConvert.DeserializeObject<List<ResultProductDto>>(jsonData);
+            var values = JsonConvert.DeserializeObject<List<ResultCategoryDto>>(jsonData);
             List<SelectListItem> values2 = (from x in values
                                             select new SelectListItem
                                             {
-                                                Text = x.ProductName,
-                                                Value = x.ProductId.ToString()
+                                                Text = x.categoryName,
+                                                Value = x.categoryId.ToString()
                                             }).ToList();
             ViewBag.v = values2; // Pass the products to the view
 
@@ -103,7 +103,7 @@ namespace MyApiProject.WebUI.Controllers
             var client = _httpClientFactory.CreateClient(); // Use the default client configuration
             var jsonData = JsonConvert.SerializeObject(updateProductDto);
             StringContent content = new StringContent(jsonData, Encoding.UTF8, "application/json");
-            var response = await client.PutAsync("https://localhost:7109/api/Product/GetProduct/", content);
+            var response = await client.PutAsync("https://localhost:7109/api/Product/", content);
             if (response.IsSuccessStatusCode)
             {
                 return RedirectToAction("ProductList");
